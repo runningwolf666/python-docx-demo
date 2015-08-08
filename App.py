@@ -57,7 +57,7 @@ if os.path.exists(picname):
     # document.add_picture(picname)
 
 document.add_page_break()
-document.add_paragraph().add_run('\nPowered by RunningWolf<runningwolf2016@163.com>').font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
+document.add_paragraph().add_run('\nPowered by RunningWolf<runningwolf2016@163.com>').font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF) # white
 
 timestyle = time.strftime('%H%M%S')
 docxname = 'demo_{}.docx'.format(timestyle)
