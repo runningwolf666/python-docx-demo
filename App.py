@@ -3,6 +3,7 @@
 请在Python3下运行此程序='Please run this program with Python3'
 
 import time
+import os
 
 # Doc: http://python-docx.readthedocs.org/en/latest/index.html
 # Quickstart: http://python-docx.readthedocs.org/en/latest/user/quickstart.html
@@ -43,15 +44,17 @@ p.add_run('BLACK').font.color.rgb = RGBColor.from_string('000000') # black
 # More: http://www.360doc.com/content/12/0219/22/19147_187921920.shtml
 
 # add pic, original size
-p.add_run('\nCode: ').font.color.rgb = RGBColor.from_string('0000FF') # blue
-# See: http://stackoverflow.com/questions/26617218/python-docx-add-picture-size-wont-print-as-shown-on-screen
-# document.add_picture('pic.png', width=Inches(4.9))
-im = Image.open('pic.png')
-width, height = im.size
-if width > 680:
-    raise PicSizeError('Too large, please decrease the pic size or increase the number following--96')
-document.add_picture('pic.png', width=Inches(width/96))
-# document.add_picture('pic.png')
+picname = 'pic.png'
+if os.path.exists(picname):
+    p.add_run('\nCode: ').font.color.rgb = RGBColor.from_string('0000FF') # blue
+    # See: http://stackoverflow.com/questions/26617218/python-docx-add-picture-size-wont-print-as-shown-on-screen
+    # document.add_picture('pic.png', width=Inches(4.9))
+    im = Image.open(picname)
+    width, height = im.size
+    if width > 680:
+        raise PicSizeError('Too large, please decrease the pic size or increase the number following--96')
+    document.add_picture(picname, width=Inches(width/96))
+    # document.add_picture(picname)
 
 document.add_page_break()
 document.add_paragraph().add_run('\nPowered by RunningWolf<runningwolf2016@163.com>').font.color.rgb = RGBColor(0xFF, 0xFF, 0xFF)
